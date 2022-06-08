@@ -14,12 +14,27 @@ public class RotorFunctions {
 		rotorsArray = arr;
 	}
 	public static void traverseRotors(String letterMessage){
-		rotateRotor(rotorsArray[0].getRotor());
-		if(rotorsArray[0].getTurnoverPoint().equals(rotorsArray[0].getLastIndex())){
-			rotateRotor(rotorsArray[1].getRotor());
+		String[] rotorOne = rotorsArray[0].getRotor();
+		String rotorOneTurnoverPoint = rotorsArray[0].getTurnoverPoint();
+		String rotorOneCurrentTurnoverPoint = rotorsArray[0].getLastIndex();
+
+		String[] rotorTwo = rotorsArray[1].getRotor();
+		String rotorTwoTurnoverPoint = rotorsArray[1].getTurnoverPoint();
+		String rotorTwoCurrentTurnoverPoint = rotorsArray[1].getLastIndex();
+
+		String[] rotorThree = rotorsArray[2].getRotor();
+
+		rotateRotor(rotorOne);
+		if(rotorOneTurnoverPoint.equals(rotorOneCurrentTurnoverPoint)){
+			rotateRotor(rotorTwo);
 		}
-		if(rotorsArray[1].getTurnoverPoint().equals(rotorsArray[1].getLastIndex())){
-			rotateRotor(rotorsArray[2].getRotor());
+		if(rotorTwoTurnoverPoint.equals(rotorTwoCurrentTurnoverPoint)){
+			rotateRotor(rotorThree);
 		}
+
+		int letNum = letterToNumberHashMap.letterToNumber(letterMessage);
+		String resultOne = rotorOne[letNum];
+		String resultTwo = rotorTwo[letterToNumberHashMap.letterToNumber(resultOne)];
+		String resultThree = rotorThree[letterToNumberHashMap.letterToNumber(resultTwo)];
 	}
 }
