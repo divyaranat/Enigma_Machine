@@ -89,9 +89,10 @@ public class RotorSettings {
 			}
 			default -> System.out.println("Error: rotor three switch");
 		}
-
-		Rotor rotorOne = new Rotor(positionOneArray, positionOneTurnoverPoint);
-		Rotor rotorTwe = new Rotor(positionTwoArray, positionTwoTurnoverPoint);
-		Rotor rotorThree = new Rotor(positionThreeArray, positionThreeTurnoverPoint);
+		Rotor[] rotorsArray = new Rotor[3];
+		rotorsArray[0] = new Rotor(positionOneArray, positionOneTurnoverPoint);
+		rotorsArray[1] = new Rotor(positionTwoArray, positionTwoTurnoverPoint);
+		rotorsArray[2] = new Rotor(positionThreeArray, positionThreeTurnoverPoint);
+		RotorFunctions.setRotorsArray(rotorsArray);
 	}
 }
