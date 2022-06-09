@@ -1,4 +1,5 @@
 public class RotorSettings {
+
 	public static void rotorSelection(String rotorPositionOne, String rotorPositionTwo, String rotorPositionThree){
 		String[] rotorOneArray = {"E","K","M","F","L","G","D","Q","V","Z","N","T","O","W","Y","H","X","U","S","P","A","I","B","R","C","J"};
 		String[] rotorTwoArray = {"A","J","D","K","S","I","R","U","X","B","L","H","W","T","M","C","Q","G","Z","N","P","Y","F","V","O","E"};
@@ -21,23 +22,23 @@ public class RotorSettings {
 		switch (rotorPositionOne) {
 			case "I" -> {
 				positionOneArray = rotorOneArray;
-				positionOneTurnoverPoint = "Q";
+				positionOneTurnoverPoint = "X";
 			}
 			case "II" -> {
 				positionOneArray = rotorTwoArray;
-				positionOneTurnoverPoint = "E";
+				positionOneTurnoverPoint = "S";
 			}
 			case "III" -> {
 				positionOneArray = rotorThreeArray;
-				positionOneTurnoverPoint = "V";
+				positionOneTurnoverPoint = "M";
 			}
 			case "IV" -> {
 				positionOneArray = rotorFourArray;
-				positionOneTurnoverPoint = "J";
+				positionOneTurnoverPoint = "Q";
 			}
 			case "V" -> {
 				positionOneArray = rotorFiveArray;
-				positionOneTurnoverPoint = "Z";
+				positionOneTurnoverPoint = "K";
 			}
 			default -> System.out.println("Error: rotor one switch");
 		}
@@ -45,23 +46,23 @@ public class RotorSettings {
 		switch (rotorPositionTwo) {
 			case "I" -> {
 				positionTwoArray = rotorOneArray;
-				positionTwoTurnoverPoint = "Q";
+				positionTwoTurnoverPoint = "X";
 			}
 			case "II" -> {
 				positionTwoArray = rotorTwoArray;
-				positionOneTurnoverPoint = "E";
+				positionOneTurnoverPoint = "S";
 			}
 			case "III" -> {
 				positionTwoArray = rotorThreeArray;
-				positionOneTurnoverPoint = "V";
+				positionOneTurnoverPoint = "M";
 			}
 			case "IV" -> {
 				positionTwoArray = rotorFourArray;
-				positionOneTurnoverPoint = "J";
+				positionOneTurnoverPoint = "Q";
 			}
 			case "V" -> {
 				positionTwoArray = rotorFiveArray;
-				positionOneTurnoverPoint = "Z";
+				positionOneTurnoverPoint = "K";
 			}
 			default -> System.out.println("Error: rotor two switch");
 		}
@@ -69,26 +70,27 @@ public class RotorSettings {
 		switch (rotorPositionThree) {
 			case "I" -> {
 				positionThreeArray = rotorOneArray;
-				positionThreeTurnoverPoint = "Q";
+				positionThreeTurnoverPoint = "X";
 			}
 			case "II" -> {
 				positionThreeArray = rotorTwoArray;
-				positionThreeTurnoverPoint = "E";
+				positionThreeTurnoverPoint = "S";
 			}
 			case "III" -> {
 				positionThreeArray = rotorThreeArray;
-				positionThreeTurnoverPoint = "V";
+				positionThreeTurnoverPoint = "M";
 			}
 			case "IV" -> {
 				positionThreeArray = rotorFourArray;
-				positionThreeTurnoverPoint = "J";
+				positionThreeTurnoverPoint = "Q";
 			}
 			case "V" -> {
 				positionThreeArray = rotorFiveArray;
-				positionThreeTurnoverPoint = "Z";
+				positionThreeTurnoverPoint = "K";
 			}
 			default -> System.out.println("Error: rotor three switch");
 		}
+
 		Rotor[] rotorsArray = new Rotor[3];
 		rotorsArray[0] = new Rotor(positionOneArray, positionOneTurnoverPoint);
 		rotorsArray[1] = new Rotor(positionTwoArray, positionTwoTurnoverPoint);

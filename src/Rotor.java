@@ -12,9 +12,7 @@ public class Rotor {
 		return rotor;
 	}
 
-	public String getLastIndex(){
-		return rotor[25];
-	}
+	public String getLastIndex(){ return rotor[25]; }
 
 	public String getTurnoverPoint(){
 		return turnoverPoint;

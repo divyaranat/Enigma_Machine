@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Keyboard {
+
 	private static String spacelessMessage;
 
 	public static void rotorSelectionPrompt(Scanner scnr){
@@ -38,7 +39,7 @@ public class Keyboard {
 	}
 
 	public static void launchToRotor(){
-		for(int i = 0; i <= spacelessMessage.length(); i++){
+		for(int i = 0; i < spacelessMessage.length(); i++){
 			String letterMessage = spacelessMessage.substring(i, i+1);
 			RotorFunctions.traverseRotors(letterMessage);
 		}
