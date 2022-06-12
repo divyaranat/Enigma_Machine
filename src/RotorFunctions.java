@@ -2,74 +2,75 @@ import java.util.Arrays;
 
 public class RotorFunctions {
 
-	private static Rotor[] rotorsArray = new Rotor[3];
+	private static String[][] rotorOne;
+	private static String[][] rotorTwo;
+	private static String[][] rotorThree;
+	private static String[][] reflector;
 
-	public static void rotateRotor(String[] rotor, Rotor rotorObject){
-		String tempIndexHolder = rotor[0];
+	private static String rotorOneTurnoverPoint;
+	private static String rotorTwoTurnoverPoint;
+
+	public static void rotateRotor(String[][] rotor){
+		String tempIndexHolderZero = rotor[0][0];
+		String tempIndexHolderOne = rotor[1][0];
 		for(int i = 0; i < 25; i++){
-			rotor[i] = rotor[i+1];
+			rotor[0][i] = rotor[0][i+1];
+			rotor[1][i] = rotor[1][i+1];
 		}
-		rotor[25] = tempIndexHolder;
-		rotorObject.incrementRotorShiftCount();
+		rotor[0][25] = tempIndexHolderZero;
+		rotor[1][25] = tempIndexHolderOne;
 	}
 
-	public static void setRotorsArray(Rotor[] arr){
-		rotorsArray = arr;
+	public static void setRotors(Rotor rotorOneObject, Rotor rotorTwoObject, Rotor rotorThreeObject, String[][] reflectorArray){
+		rotorOne = rotorOneObject.getRotorArray();
+		rotorTwo = rotorTwoObject.getRotorArray();
+		rotorThree = rotorThreeObject.getRotorArray();
+		reflector = reflectorArray;
+
+		rotorOneTurnoverPoint = rotorOneObject.getTurnoverPoint();
+		rotorTwoTurnoverPoint = rotorTwoObject.getTurnoverPoint();
 	}
 
-	private static int calcIndexDifference(String result, Rotor rotorObject){
-		int a = letterToNumberHashMap.letterToNumber(result);
-		int b = rotorObject.getRotorShiftCount();
-		if(a - b >= 0){
-			return Math.abs(a - b);
-		}
-		return Math.abs(25 - a - b);
-	}
+	public static String traverseRotors(String letterMessage){
+		rotateRotor(rotorOne);
+		String rotorOneCurrentTurnoverPoint = rotorOne[0][25];
 
-	private static int calcReflectedIndexDifference(String result, Rotor rotorObject){
-		int a = Arrays.asList(rotorObject.getRotor()).indexOf(result);
-		int b = rotorObject.getRotorShiftCount();
-		if(a + b > 25){
-			return Math.abs(a + b - 25);
-		}
-		return a + b;
-	}
-
-	public static void traverseRotors(String letterMessage){
-		String[] rotorOne = rotorsArray[0].getRotor();
-		String rotorOneTurnoverPoint = rotorsArray[0].getTurnoverPoint();
-		String rotorOneCurrentTurnoverPoint = rotorsArray[0].getLastIndex();
-
-		String[] rotorTwo = rotorsArray[1].getRotor();
-		String rotorTwoTurnoverPoint = rotorsArray[1].getTurnoverPoint();
-		String rotorTwoCurrentTurnoverPoint = rotorsArray[1].getLastIndex();
-
-		String[] rotorThree = rotorsArray[2].getRotor();
-
-		rotateRotor(rotorOne, rotorsArray[0]);
 		if(rotorOneTurnoverPoint.equals(rotorOneCurrentTurnoverPoint)){
-			rotateRotor(rotorTwo, rotorsArray[1]);
+			rotateRotor(rotorTwo);
+			String rotorTwoCurrentTurnoverPoint = rotorTwo[0][25];
+
 			if(rotorTwoTurnoverPoint.equals(rotorTwoCurrentTurnoverPoint)){
-				rotateRotor(rotorThree, rotorsArray[2]);
+				rotateRotor(rotorThree);
 			}
 		}
 
-		int letNum = letterToNumberHashMap.letterToNumber(letterMessage);
-		String resultOne = rotorOne[letNum];
-		String resultTwo = rotorTwo[calcIndexDifference(resultOne, rotorsArray[0])];
-		String resultThree = rotorThree[calcIndexDifference(resultTwo,rotorsArray[1])];
-		System.out.println(resultThree);
+		int letNum = indexOf(reflector, letterMessage, 0);
+		String resultOne = rotorOne[1][letNum];
+		String resultTwo = rotorTwo[1][indexOf(rotorOne, resultOne, 0)];
+		String resultThree = rotorThree[1][indexOf(rotorTwo, resultTwo, 0)];
 
-		int rotorToReflecIndex = Arrays.asList(rotorThree).indexOf(resultThree);
-		String reflectorLetter = Character.toString((char) rotorToReflecIndex + 65);
-		reflectorLetter = Reflector.getReflectedLetter(reflectorLetter);
-		System.out.println(reflectorLetter);
+		String reflectorLetter = reflector[1][indexOf(rotorThree, resultThree, 0)];
 
-		int rotorThreeIndex = Arrays.asList(rotorThree).indexOf(reflectorLetter);
-		resultThree = Character.toString((char) rotorThreeIndex + 65);
-		int rotorTwoIndex = calcReflectedIndexDifference(resultThree, rotorsArray[1]);
-		resultTwo = Character.toString((char) rotorTwoIndex + 65);
-		int rotorOneIndex = calcReflectedIndexDifference(resultTwo, rotorsArray[0]);
-		resultOne = Character.toString((char) rotorOneIndex + 65);
+		resultThree = rotorThree[0][indexOf(reflector, reflectorLetter, 0)];
+		resultThree = rotorThree[0][indexOf(rotorThree, resultThree, 1)];
+
+		resultTwo = rotorTwo[0][indexOf(rotorThree, resultThree, 0)];
+		resultTwo = rotorTwo[0][indexOf(rotorTwo, resultTwo, 1)];
+
+		resultOne = rotorOne[0][indexOf(rotorTwo, resultTwo, 0)];
+		resultOne = rotorOne[0][indexOf(rotorOne, resultOne, 1)];
+
+		String finalResult = reflector[0][indexOf(rotorOne, resultOne, 0)];
+		return finalResult;
+	}
+
+	public static int indexOf(String[][] rotorArray, String result, int arraySelect){
+		int i;
+		for(i = 0; i <= 25; i++){
+			if(rotorArray[arraySelect][i].equals(result)){
+				break;
+			}
+		}
+		return i;
 	}
 }
