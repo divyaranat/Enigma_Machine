@@ -1,100 +1,117 @@
 public class RotorSettings {
 
 	public static void rotorSelection(String rotorPositionOne, String rotorPositionTwo, String rotorPositionThree){
-		String[] rotorOneArray = {"E","K","M","F","L","G","D","Q","V","Z","N","T","O","W","Y","H","X","U","S","P","A","I","B","R","C","J"};
-		String[] rotorTwoArray = {"A","J","D","K","S","I","R","U","X","B","L","H","W","T","M","C","Q","G","Z","N","P","Y","F","V","O","E"};
-		String[] rotorThreeArray = {"B","D","F","H","J","L","C","P","R","T","X","V","Z","N","Y","E","I","W","G","A","K","M","U","S","Q","O"};
-		String[] rotorFourArray = {"E","S","O","V","P","Z","J","A","Y","Q","U","I","R","H","X","L","N","F","T","G","K","D","C","M","W","B"};
-		String[] rotorFiveArray = {"V","Z","B","R","G","I","T","Y","U","P","S","D","N","H","L","X","A","W","M","J","Q","O","F","E","C","K"};
+		String[][] rotorOneArray = {{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"},
+									{"E","K","M","F","L","G","D","Q","V","Z","N","T","O","W","Y","H","X","U","S","P","A","I","B","R","C","J"}};
 
-		rotorPositionOne = rotorPositionOne.toUpperCase();
-		rotorPositionTwo = rotorPositionTwo.toUpperCase();
-		rotorPositionThree = rotorPositionThree.toUpperCase();
+		String[][] rotorTwoArray = {{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"},
+									{"A","J","D","K","S","I","R","U","X","B","L","H","W","T","M","C","Q","G","Z","N","P","Y","F","V","O","E"}};
 
-		String[] positionOneArray = new String[26];
-		String[] positionTwoArray = new String[26];
-		String[] positionThreeArray = new String[26];
+		String[][] rotorThreeArray = {{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"},
+									  {"B","D","F","H","J","L","C","P","R","T","X","V","Z","N","Y","E","I","W","G","A","K","M","U","S","Q","O"}};
 
-		String positionOneTurnoverPoint = "";
-		String positionTwoTurnoverPoint = "";
-		String positionThreeTurnoverPoint = "";
+		String[][] rotorFourArray = {{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"},
+									 {"E","S","O","V","P","Z","J","A","Y","Q","U","I","R","H","X","L","N","F","T","G","K","D","C","M","W","B"}};
+
+		String[][] rotorFiveArray = {{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"},
+									 {"V","Z","B","R","G","I","T","Y","U","P","S","D","N","H","L","X","A","W","M","J","Q","O","F","E","C","K"}};
+
+		String[][] relflectorArray = {{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"},
+									  {"Y","R","U","H","Q","S","L","D","P","X","N","G","O","K","M","I","E","B","F","Z","C","W","V","J","A","T"}};
+
+		String[][] positionOneArray = new String[26][26];
+		String[][] positionTwoArray = new String[26][26];
+		String[][] positionThreeArray = new String[26][26];
+
+		String positionOneTurnoverPoint;
+		String positionTwoTurnoverPoint;
+		String positionThreeTurnoverPoint;
 
 		switch (rotorPositionOne) {
 			case "I" -> {
 				positionOneArray = rotorOneArray;
-				positionOneTurnoverPoint = "X";
+				positionOneTurnoverPoint = "Q";
 			}
 			case "II" -> {
 				positionOneArray = rotorTwoArray;
-				positionOneTurnoverPoint = "S";
+				positionOneTurnoverPoint = "E";
 			}
 			case "III" -> {
 				positionOneArray = rotorThreeArray;
-				positionOneTurnoverPoint = "M";
+				positionOneTurnoverPoint = "V";
 			}
 			case "IV" -> {
 				positionOneArray = rotorFourArray;
-				positionOneTurnoverPoint = "Q";
+				positionOneTurnoverPoint = "J";
 			}
 			case "V" -> {
 				positionOneArray = rotorFiveArray;
-				positionOneTurnoverPoint = "K";
+				positionOneTurnoverPoint = "Z";
 			}
-			default -> System.out.println("Error: rotor one switch");
+			default -> {
+				System.out.println("Error: rotor one switch");
+				positionOneTurnoverPoint = null;
+			}
 		}
 
 		switch (rotorPositionTwo) {
 			case "I" -> {
 				positionTwoArray = rotorOneArray;
-				positionTwoTurnoverPoint = "X";
+				positionTwoTurnoverPoint = "Q";
 			}
 			case "II" -> {
 				positionTwoArray = rotorTwoArray;
-				positionOneTurnoverPoint = "S";
+				positionTwoTurnoverPoint = "E";
 			}
 			case "III" -> {
 				positionTwoArray = rotorThreeArray;
-				positionOneTurnoverPoint = "M";
+				positionTwoTurnoverPoint = "V";
 			}
 			case "IV" -> {
 				positionTwoArray = rotorFourArray;
-				positionOneTurnoverPoint = "Q";
+				positionTwoTurnoverPoint = "J";
 			}
 			case "V" -> {
 				positionTwoArray = rotorFiveArray;
-				positionOneTurnoverPoint = "K";
+				positionTwoTurnoverPoint = "Z";
 			}
-			default -> System.out.println("Error: rotor two switch");
+			default -> {
+				System.out.println("Error: rotor two switch");
+				positionTwoTurnoverPoint = null;
+			}
 		}
 
 		switch (rotorPositionThree) {
 			case "I" -> {
 				positionThreeArray = rotorOneArray;
-				positionThreeTurnoverPoint = "X";
+				positionThreeTurnoverPoint = "Q";
 			}
 			case "II" -> {
 				positionThreeArray = rotorTwoArray;
-				positionThreeTurnoverPoint = "S";
+				positionThreeTurnoverPoint = "E";
 			}
 			case "III" -> {
 				positionThreeArray = rotorThreeArray;
-				positionThreeTurnoverPoint = "M";
+				positionThreeTurnoverPoint = "V";
 			}
 			case "IV" -> {
 				positionThreeArray = rotorFourArray;
-				positionThreeTurnoverPoint = "Q";
+				positionThreeTurnoverPoint = "J";
 			}
 			case "V" -> {
 				positionThreeArray = rotorFiveArray;
-				positionThreeTurnoverPoint = "K";
+				positionThreeTurnoverPoint = "Z";
 			}
-			default -> System.out.println("Error: rotor three switch");
+			default -> {
+				System.out.println("Error: rotor three switch");
+				positionThreeTurnoverPoint = null;
+			}
 		}
 
-		Rotor[] rotorsArray = new Rotor[3];
-		rotorsArray[0] = new Rotor(positionOneArray, positionOneTurnoverPoint);
-		rotorsArray[1] = new Rotor(positionTwoArray, positionTwoTurnoverPoint);
-		rotorsArray[2] = new Rotor(positionThreeArray, positionThreeTurnoverPoint);
-		RotorFunctions.setRotorsArray(rotorsArray);
+		Rotor rotorOne = new Rotor(positionOneArray, positionOneTurnoverPoint);
+		Rotor rotorTwo = new Rotor(positionTwoArray, positionTwoTurnoverPoint);
+		Rotor rotorThree = new Rotor(positionThreeArray, positionThreeTurnoverPoint);
+
+		RotorFunctions.setRotors(rotorOne, rotorTwo, rotorThree, relflectorArray);
 	}
 }
