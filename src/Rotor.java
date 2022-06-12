@@ -1,31 +1,19 @@
 public class Rotor {
 
-	private String[] rotor;
+	private String[][] rotor;
 	private String turnoverPoint;
-	private int rotorShiftCount;
 
-	Rotor(String[] config, String turnoverPoint){
-		rotor = config;
+	Rotor(String[][] rotor, String turnoverPoint){
+		this.rotor = rotor;
 		this.turnoverPoint = turnoverPoint;
-		rotorShiftCount = 0;
 	}
 
-	public String[] getRotor(){
+	public String[][] getRotorArray(){
 		return rotor;
 	}
 
-	public String getLastIndex(){ return rotor[25]; }
 
 	public String getTurnoverPoint(){
 		return turnoverPoint;
-	}
-
-	public int getRotorShiftCount() {
-		return rotorShiftCount;
-	}
-
-	public void incrementRotorShiftCount(){
-		rotorShiftCount++;
-		rotorShiftCount = rotorShiftCount % 26;
 	}
 }
