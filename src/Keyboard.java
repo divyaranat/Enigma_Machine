@@ -1,4 +1,3 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Keyboard {
@@ -58,22 +57,8 @@ public class Keyboard {
 		System.out.println();
 	}
 
-	public static void encryptionMessage(){
-		System.out.println("Encrypting Message... Please Stand By.");
-		System.out.print("[");
-		for(int i = 0; i < 25; i++){
-			System.out.print("*");
-			try{
-				Thread.sleep(100);
-			}
-			catch(InterruptedException ex){
-				Thread.currentThread().interrupt();
-			}
-		}
-		System.out.print("]");
-		System.out.println();
-		System.out.println("Encryption Complete.");
-		System.out.println();
+	public static void encryptionInfo(){
+		System.out.println("Initial rotor settings: " + RotorFunctions.getRotorPositions());
 		System.out.print("Encrypted Message: ");
 	}
 
@@ -84,4 +69,20 @@ public class Keyboard {
 		}
 		System.out.println();
 	}
+
+	public static void selectRotorPositions(Scanner scnr){
+		System.out.println("Input rotor settings.");
+
+		System.out.print("Rotor One: ");
+		String rotorOnePosition = scnr.nextLine().toUpperCase();
+
+		System.out.print("Rotor Two: ");
+		String rotorTwoPosition = scnr.nextLine().toUpperCase();
+
+		System.out.print("Rotor Three: ");
+		String rotorThreePosition = scnr.nextLine().toUpperCase();
+
+		RotorFunctions.setRotorPosition(rotorOnePosition, rotorTwoPosition, rotorThreePosition);
+	}
+
 }
