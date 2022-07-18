@@ -40,7 +40,7 @@ public class Keyboard {
 
 	public static void messageInput(Scanner scnr){
 		System.out.print("Enter message: ");
-		String message = scnr.nextLine();
+		String message = scnr.nextLine().toUpperCase();
 		messageFilter(message, scnr);
 	}
 
@@ -48,6 +48,7 @@ public class Keyboard {
 		message = message.replaceAll("   ", "  ");
 		message = message.replaceAll("  ", " ");
 		spacelessMessage = message.replaceAll(" ", "");
+
 		for(char letter : spacelessMessage.toCharArray()){
 			if(!Character.isLetter(letter)){
 				System.out.println("Error: \"" + letter + "\" is not a letter. Please enter message again.");
