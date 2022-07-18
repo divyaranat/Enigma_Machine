@@ -1,4 +1,7 @@
-import java.util.Locale;
+/*
+*Enigma Machine Project
+* Divya Ranat
+*/
 import java.util.Scanner;
 
 public class Main {
@@ -22,6 +25,7 @@ public class Main {
 			System.out.print("Selection: ");
 			selection = scnr.nextLine().toUpperCase().charAt(0);
 			System.out.println();
+
 			switch(selection){
 				case 'N':
 					System.out.println("---Encryption---");
