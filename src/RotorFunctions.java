@@ -86,10 +86,10 @@ public class RotorFunctions {
 			rotateRotor(rotorOne);
 		}
 		while(!rotorTwo[0][0].equals(rotorTwoPosition)){
-			rotateRotor(rotorOne);
+			rotateRotor(rotorTwo);
 		}
 		while(!rotorThree[0][0].equals(rotorThreePosition)){
-			rotateRotor(rotorOne);
+			rotateRotor(rotorThree);
 		}
 	}
 
